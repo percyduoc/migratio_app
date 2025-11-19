@@ -1,12 +1,5 @@
-# Migratio App (Flutter) – Demo conectada a *vision-api*
+# Migratio App (Flutter)
 
-Este zip contiene una app Flutter simple con:
-
-- **Auth:** login / signup / logout (token JWT)
-- **Mapa:** `flutter_map` + OpenStreetMap, muestra **lugares** con color **verde/amarillo/rojo** según la última métrica y la capacidad máxima del lugar. Muestra tu ubicación como una **palomita** (🕊️).
-- **Perfil:** ver/editar (nombre, apellido, tipo_usuario).
-
-> Cambia `apiBaseUrl` en `lib/config.dart` por tu URL real de Render.
 
 ---
 
@@ -39,7 +32,7 @@ CREATE TABLE IF NOT EXISTS usuarios_app (
 
 ### 1.2 Endpoint **lugares + status**
 
-Agrega a tu `server.js` (después de otras rutas) esta ruta para que la app lea los puntos del mapa:
+
 
 ```js
 app.get('/api/lugares/status', async (_req, res) => {
@@ -194,13 +187,12 @@ app.put('/api/users/me', authMiddleware, async (req, res) => {
 });
 ```
 
-> **CORS** ya está activo en tu servidor (`app.use(cors())`). Si lo deseas, limita `origin` a tu dominio o `http://localhost:PORT` cuando desarrolles.
 
 ---
 
 ## 2) Ejecutar la app
 
-1) Edita `lib/config.dart` y pon tu `apiBaseUrl` (Render).
+1) Edita `lib/config.dart` y pon la  `apiBaseUrl`
 2) En la raíz del proyecto:
    ```bash
    flutter pub get
@@ -219,9 +211,3 @@ app.put('/api/users/me', authMiddleware, async (req, res) => {
 
 ---
 
-## 3) Notas
-
-- El mapa usa `flutter_map` (OpenStreetMap) para evitar llaves de Google.
-- La **palomita** eres tú: se ve como un `CircleAvatar` con 🕊️.
-- Los colores de lugares derivan del semáforo calculado en `/api/lugares/status`.
-- Esta base está lista para extender: filtros por categoría, ver series del lugar, etc.
